@@ -1,0 +1,21 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local pumpkinName = "Pumpkin" -- Adjust this to the exact name of the pumpkin in your game
+
+-- Function to collect pumpkins
+local function collectPumpkins()
+    while true do
+        wait(1) -- Adjust the wait time as needed
+
+        for _, item in ipairs(workspace:GetChildren()) do
+            if item:IsA("Part") and item.Name == pumpkinName and (item.Position - character.HumanoidRootPart.Position).magnitude < 10 then
+                if item:FindFirstChild("ClickDetector") then
+                    fireclickdetector(item.ClickDetector) -- Simulates a click on the pumpkin
+                end
+            end
+        end
+    end
+end
+
+-- Start collecting pumpkins
+collectPumpkins()
